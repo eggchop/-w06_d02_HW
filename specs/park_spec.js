@@ -46,12 +46,19 @@ describe('Park', function() {
   });
 
   it('should be able to find the dinosaur that attracts the most visitors', function () {
-    const actual = park.findFavDinosaur;
-    assert.deepEqual(actual, dinosaur1);
+    const actual = park.findFavDinosaur();
+    assert.strictEqual(actual, dinosaur1);
   });
 
-  it('should be able to find all dinosaurs of a particular species');
+  it('should be able to find all dinosaurs of a particular species', function () {
+    const actual = park.findBySpecies("t-rex");
+    const expected = [dinosaur1];
+    assert.deepStrictEqual(actual, expected);
+  });
 
-  it('should be able to remove all dinosaurs of a particular species');
+  it('should be able to remove all dinosaurs of a particular species', function () {
+    const actual = park.removeBySpecies("t-rex")
+    assert.deepStrictEqual(actual, [dinosaur2,dinosaur3]);
+  });
 
 });

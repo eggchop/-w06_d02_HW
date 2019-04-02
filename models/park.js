@@ -9,17 +9,42 @@ Park.prototype.addDinosaurToCollection = function (dinosaur) {
 }
 
 Park.prototype.removeDinosaurFromCollection = function (dinosaur) {
-  for( var i = 0; i < this.collection.length; i++){
-    var dino = this.collection;
+  for( let i = 0; i < this.collection.length; i++){
+    let dino = this.collection;
    if ( dino[i] === dinosaur) {
      dino.splice(i, 1);
     }
   }
 };
 
-Park.prototype.findFavDinosaur = function () {
-  var objects = this.collection;
-  return Math.max.apply(Math, objects.map(function(o) { return o.guestsAttractedPerDay; }))
+Park.prototype.findFavDinosaur = function() {
+  let favDino = this.collection[0];
+  for (dino of this.collection) {
+    if (dino.guestsAttractedPerDay > favDino.guestsAttractedPerDay) {
+      favDino = dino;
+    };
+  };
+  return favDino;
+};
+
+Park.prototype.findBySpecies = function(species) {
+  let dinoFound = [];
+  for (dino of this.collection) {
+    if (dino.species === species) {
+      dinoFound.push(dino);
+    };
+  };
+  return dinoFound;
+};
+
+Park.prototype.removeBySpecies = function(species) {
+  let dinoFound = [];
+  for (dino of this.collection) {
+    if (dino.species !== species) {
+      dinoFound.push(dino);
+    };
+  };
+  return dinoFound;
 };
 
 module.exports = Park;
