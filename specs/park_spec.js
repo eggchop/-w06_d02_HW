@@ -61,4 +61,10 @@ describe('Park', function() {
     assert.deepStrictEqual(actual, [dinosaur2,dinosaur3]);
   });
 
+  it('should be able to make a hash of all diet types with number of dinosaurs', function () {
+    park.addDinosaurToCollection(dinosaur4)
+    const actual = park.hashOfDietNumbers()
+    assert.deepStrictEqual(actual, { 'carnivore': 2, 'herbivore': 1, 'omnivore': 1 });
+  });
+
 });

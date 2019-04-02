@@ -36,6 +36,15 @@ Park.prototype.findBySpecies = function(species) {
   };
   return dinoFound;
 };
+Park.prototype.findByDiet = function(diet) {
+  let dinoFound = [];
+  for (dino of this.collection) {
+    if (dino.diet === diet) {
+      dinoFound.push(dino);
+    };
+  };
+  return dinoFound;
+};
 
 Park.prototype.removeBySpecies = function(species) {
   let dinoFound = [];
@@ -46,5 +55,16 @@ Park.prototype.removeBySpecies = function(species) {
   };
   return dinoFound;
 };
+
+Park.prototype.hashOfDietNumbers = function() {
+  let dinoFound = {};
+
+  for (dino of this.collection) {
+    dinoFound[dino.diet] = this.findByDiet(dino.diet).length ;
+  };
+  return dinoFound;
+};
+
+
 
 module.exports = Park;
